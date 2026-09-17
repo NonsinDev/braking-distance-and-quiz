@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "question": "Wie verändert sich der Anhalteweg bei Verdopplung der Geschwindigkeit?",
+    "mediaUrl": null,
+    "options": ["Er verdoppelt sich", "Er vervierfacht sich", "Er verdreifacht sich", "Er bleibt gleich"],
+    "correctIndex": 1,
+    "timeLimitSeconds": 20
+  },
+  {
+    "id": 2,
+    "question": "Welche Wirkung hat Aquaplaning primär auf das Fahrzeug?",
+    "mediaUrl": null,
+    "options": ["Bessere Haftung", "Verlust der Lenkbarkeit", "Höhere Geschwindigkeit", "Motor stirbt ab"],
+    "correctIndex": 1,
+    "timeLimitSeconds": 15
+  },
+  {
+    "id": 3,
+    "question": "Was ist bei einem plötzlich auftretenden Hindernis entscheidend?",
+    "mediaUrl": null,
+    "options": ["Blickführung und kontrolliertes Bremsen", "Sofortiges Beschleunigen", "Handbremse ziehen", "Licht ausschalten"],
+    "correctIndex": 0,
+    "timeLimitSeconds": 15
+  }
+]
