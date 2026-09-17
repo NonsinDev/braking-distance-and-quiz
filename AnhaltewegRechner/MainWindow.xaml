@@ -1,0 +1,295 @@
+<Window x:Class="AnhaltewegRechner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AnhaltewegRechner.ViewModels"
+        xmlns:conv="clr-namespace:AnhaltewegRechner.Converters"
+        Title="Anhalteweg- und Aufprallgeschwindigkeitsrechner"
+        Height="760" Width="1080"
+        MinHeight="680" MinWidth="960"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundBrush}"
+        FontFamily="Segoe UI">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <conv:InverseBooleanConverter x:Key="InverseBoolConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- ================= Kopfzeile ================= -->
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" Height="56">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Anhalteweg- &amp; Aufprallgeschwindigkeitsrechner"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Margin="20,0,0,0" />
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,10,0">
+                    <Button Content="ƒ(x)  Formeln"
+                            Style="{StaticResource TopBarButtonStyle}"
+                            Command="{Binding ShowFormulasCommand}" />
+                    <Button Content="?  Hilfe"
+                            Style="{StaticResource TopBarButtonStyle}"
+                            Command="{Binding ShowHelpCommand}" />
+                    <Button Content="✕  Beenden"
+                            Style="{StaticResource TopBarButtonStyle}"
+                            Command="{Binding ExitCommand}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ================= Inhalt ================= -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Border Grid.Column="0" Style="{StaticResource CardStyle}" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <TextBlock Text="Eingaben" Style="{StaticResource SectionHeadingStyle}" />
+
+                    <!-- Zulässige Höchstgeschwindigkeit -->
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Zulässige Höchstgeschwindigkeit" Style="{StaticResource InputLabelStyle}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource InputValueStyle}">
+                            <Run Text="{Binding SpeedLimitKmh, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" km/h" />
+                        </TextBlock>
+                    </Grid>
+                    <Slider Minimum="10" Maximum="130" TickFrequency="10" IsSnapToTickEnabled="True"
+                            Value="{Binding SpeedLimitKmh}" Margin="0,0,0,18" />
+
+                    <!-- Eigene Geschwindigkeit -->
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Eigene Geschwindigkeit" Style="{StaticResource InputLabelStyle}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource InputValueStyle}">
+                            <Run Text="{Binding OwnSpeedKmh, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" km/h" />
+                        </TextBlock>
+                    </Grid>
+                    <Slider Minimum="10" Maximum="200" TickFrequency="10" IsSnapToTickEnabled="True"
+                            Value="{Binding OwnSpeedKmh}" Margin="0,0,0,18" />
+
+                    <!-- Reaktionszeit -->
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Reaktionszeit" Style="{StaticResource InputLabelStyle}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource InputValueStyle}">
+                            <Run Text="{Binding ReactionTimeSeconds, Mode=OneWay, StringFormat={}{0:0.0}}" /><Run Text=" s" />
+                        </TextBlock>
+                    </Grid>
+                    <Slider Minimum="0.5" Maximum="2.5" TickFrequency="0.1" IsSnapToTickEnabled="True"
+                            Value="{Binding ReactionTimeSeconds}" Margin="0,0,0,18" />
+
+                    <!-- Fahrbahnzustand -->
+                    <TextBlock Text="Fahrbahnzustand" Style="{StaticResource InputLabelStyle}" Margin="0,0,0,6" />
+                    <Border Background="{StaticResource TrackBrush}" CornerRadius="10" Padding="4" Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ToggleButton Grid.Column="0"
+                                          Style="{StaticResource SegmentToggleStyle}"
+                                          Content="☀  Trocken"
+                                          IsChecked="{Binding IsWetRoad, Converter={StaticResource InverseBoolConverter}, Mode=OneWay}"
+                                          Click="DryToggle_Click" />
+                            <ToggleButton Grid.Column="1"
+                                          Style="{StaticResource SegmentToggleStyle}"
+                                          Content="🌧  Nass"
+                                          IsChecked="{Binding IsWetRoad, Mode=OneWay}"
+                                          Click="WetToggle_Click" />
+                        </Grid>
+                    </Border>
+
+                    <Button Content="▶  Animation abspielen"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding PlayAnimationCommand}" />
+                </StackPanel>
+            </Border>
+
+
+            <StackPanel Grid.Column="2">
+
+                <!-- Rechenweg: Reaktionsweg + Bremsweg = Anhalteweg -->
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="Anhalteweg" Style="{StaticResource SectionHeadingStyle}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Style="{StaticResource ResultValueStyle}">
+                                    <Run Text="{Binding ReactionDistanceMeters, Mode=OneWay, StringFormat={}{0:0.00}}" />
+                                </TextBlock>
+                                <TextBlock Text="Reaktionsweg (m)" Style="{StaticResource ResultCaptionStyle}" />
+                            </StackPanel>
+
+                            <TextBlock Grid.Column="1" Text="+" Style="{StaticResource OperatorTextStyle}" />
+
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Style="{StaticResource ResultValueStyle}">
+                                    <Run Text="{Binding BrakingDistanceMeters, Mode=OneWay, StringFormat={}{0:0.00}}" />
+                                </TextBlock>
+                                <TextBlock Text="Bremsweg (m)" Style="{StaticResource ResultCaptionStyle}" />
+                            </StackPanel>
+
+                            <TextBlock Grid.Column="3" Text="=" Style="{StaticResource OperatorTextStyle}" />
+
+                            <StackPanel Grid.Column="4">
+                                <TextBlock Style="{StaticResource ResultValueStyle}" Foreground="{StaticResource AccentBrush}">
+                                    <Run Text="{Binding StoppingDistanceMeters, Mode=OneWay, StringFormat={}{0:0.00}}" />
+                                </TextBlock>
+                                <TextBlock Text="Anhalteweg (m)" Style="{StaticResource ResultCaptionStyle}" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Aufprallgeschwindigkeit + Erklärungstext -->
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="Aufprallgeschwindigkeit" Style="{StaticResource InputLabelStyle}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+                            <TextBlock HorizontalAlignment="Center" FontSize="34" FontWeight="Bold" Margin="0,4,0,0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{StaticResource AccentGreenBrush}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsSpeeding}" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource AccentRedBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                                <Run Text="{Binding ImpactSpeedKmh, Mode=OneWay, StringFormat={}{0:0.0}}" />
+                                <Run Text=" km/h" FontSize="16" FontWeight="Normal" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding SpeedWarningText}"
+                                       FontWeight="SemiBold"
+                                       FontSize="15"
+                                       Margin="0,0,0,6"
+                                       TextWrapping="Wrap">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{StaticResource AccentGreenBrush}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsSpeeding}" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource AccentRedBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock Text="{Binding ExplanationText}"
+                                       TextWrapping="Wrap"
+                                       Foreground="{StaticResource TextSecondaryBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Balkenvergleich -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Vergleich der Anhaltewege" Style="{StaticResource SectionHeadingStyle}" />
+
+                        <!-- Zulässige Höchstgeschwindigkeit -->
+                        <Grid Height="46" Margin="0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}">
+                                <Run Text="Zulässig (" /><Run Text="{Binding SpeedLimitKmh, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" km/h)" />
+                            </TextBlock>
+                            <Border x:Name="LimitTrack" Grid.Column="1" Background="{StaticResource TrackBrush}" CornerRadius="10" Height="34" VerticalAlignment="Center">
+                                <Border x:Name="LimitBarFill" Background="{StaticResource AccentGreenBrush}" CornerRadius="10" Height="34"
+                                        HorizontalAlignment="Left" Width="0">
+                                    <TextBlock Text="🚗" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                </Border>
+                            </Border>
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}">
+                                <Run Text="{Binding StoppingDistanceLimitMeters, Mode=OneWay, StringFormat={}{0:0.0}}" /><Run Text=" m" />
+                            </TextBlock>
+                        </Grid>
+
+                        <!-- Eigene Geschwindigkeit -->
+                        <Grid Height="46" Margin="0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}">
+                                <Run Text="Eigene (" /><Run Text="{Binding OwnSpeedKmh, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" km/h)" />
+                            </TextBlock>
+                            <Border x:Name="OwnTrack" Grid.Column="1" Background="{StaticResource TrackBrush}" CornerRadius="10" Height="34" VerticalAlignment="Center">
+                                <Border x:Name="OwnBarFill" CornerRadius="10" Height="34"
+                                        HorizontalAlignment="Left" Width="0">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="{StaticResource AccentGreenBrush}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSpeeding}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource AccentRedBrush}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock Text="🚗" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                </Border>
+                            </Border>
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}">
+                                <Run Text="{Binding StoppingDistanceMeters, Mode=OneWay, StringFormat={}{0:0.0}}" /><Run Text=" m" />
+                            </TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

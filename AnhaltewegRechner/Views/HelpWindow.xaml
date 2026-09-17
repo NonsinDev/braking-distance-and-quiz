@@ -1,0 +1,38 @@
+<Window x:Class="AnhaltewegRechner.Views.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Hilfe"
+        Width="460"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource BackgroundBrush}"
+        ResizeMode="NoResize">
+    <Border Style="{StaticResource CardStyle}" Margin="16">
+        <StackPanel>
+            <TextBlock Text="Bedienung" Style="{StaticResource SectionHeadingStyle}" FontSize="18" />
+
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{StaticResource TextPrimaryBrush}">
+                Stelle links die zulässige Höchstgeschwindigkeit, deine eigene Geschwindigkeit,
+                die Reaktionszeit und den Fahrbahnzustand ein. Alle Ergebnisse rechts werden
+                sofort automatisch neu berechnet.
+            </TextBlock>
+
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{StaticResource TextPrimaryBrush}">
+                Der Balkenvergleich am unteren Rand zeigt, wie weit ein Fahrzeug mit
+                zulässiger Höchstgeschwindigkeit bereits zum Stehen gekommen ist, während dein
+                Fahrzeug an derselben Stelle unter Umständen noch in voller Fahrt ist.
+            </TextBlock>
+
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,16" Foreground="{StaticResource TextPrimaryBrush}">
+                Über die Schaltfläche „Animation abspielen“ lässt sich dieser Vergleich
+                anschaulich für eine Präsentation vorführen.
+            </TextBlock>
+
+            <Button Content="Schließen"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Width="120"
+                    HorizontalAlignment="Right"
+                    Click="CloseButton_Click" />
+        </StackPanel>
+    </Border>
+</Window>

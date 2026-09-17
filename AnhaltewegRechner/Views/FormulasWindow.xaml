@@ -1,0 +1,50 @@
+<Window x:Class="AnhaltewegRechner.Views.FormulasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Formeln"
+        Width="500"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource BackgroundBrush}"
+        ResizeMode="NoResize">
+    <Border Style="{StaticResource CardStyle}" Margin="16">
+        <StackPanel>
+            <TextBlock Text="Verwendete Formeln" Style="{StaticResource SectionHeadingStyle}" FontSize="18" />
+
+            <TextBlock FontWeight="SemiBold" Margin="0,6,0,2" Foreground="{StaticResource TextPrimaryBrush}">Reaktionsweg</TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{StaticResource TextSecondaryBrush}">
+                Reaktionsweg [m] = Geschwindigkeit [m/s] × Reaktionszeit [s],
+                mit Geschwindigkeit [m/s] = Geschwindigkeit [km/h] ÷ 3,6
+            </TextBlock>
+
+            <TextBlock FontWeight="SemiBold" Margin="0,6,0,2" Foreground="{StaticResource TextPrimaryBrush}">Bremsweg</TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{StaticResource TextSecondaryBrush}">
+                Bremsweg [m] = Geschwindigkeit² [m/s] ÷ (2 × Bremsverzögerung),
+                mit Bremsverzögerung = 7,5 m/s² (trocken) bzw. 5,0 m/s² (nass).
+                Diese Werte sind typische Richtwerte aus der Verkehrspädagogik für eine
+                Vollbremsung und dienen der Veranschaulichung, nicht der exakten
+                technischen Unfallrekonstruktion.
+            </TextBlock>
+
+            <TextBlock FontWeight="SemiBold" Margin="0,6,0,2" Foreground="{StaticResource TextPrimaryBrush}">Anhalteweg</TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{StaticResource TextSecondaryBrush}">
+                Anhalteweg [m] = Reaktionsweg + Bremsweg
+            </TextBlock>
+
+            <TextBlock FontWeight="SemiBold" Margin="0,6,0,2" Foreground="{StaticResource TextPrimaryBrush}">Aufprallgeschwindigkeit</TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,16" Foreground="{StaticResource TextSecondaryBrush}">
+                Geschwindigkeit des eigenen Fahrzeugs an der Stelle, an der ein mit
+                zulässiger Höchstgeschwindigkeit fahrendes Fahrzeug bereits vollständig
+                zum Stillstand gekommen wäre. Liegt diese Stelle noch innerhalb der eigenen
+                Reaktionsstrecke, entspricht die Aufprallgeschwindigkeit der Ausgangsgeschwindigkeit,
+                da noch nicht gebremst wurde.
+            </TextBlock>
+
+            <Button Content="Schließen"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Width="120"
+                    HorizontalAlignment="Right"
+                    Click="CloseButton_Click" />
+        </StackPanel>
+    </Border>
+</Window>
