@@ -1,19 +1,16 @@
-# QuizHub
+# QuizHub — Live Multiplayer Quiz
 
-QuizHub ist ein Echtzeit-Quiz fuer Fahrsicherheitstrainings. Eine Moderation erstellt einen Quizraum, waehlt die Spielparameter und steuert den Ablauf. Teilnehmende treten mit einem Raumcode oder QR-Code bei und beantworten die Fragen auf ihrem eigenen Geraet.
+QuizHub ist eine vielseitige, interaktive Echtzeit-Quiz-Plattform im Stil von Kahoot. Eine Spielleitung erstellt einen Raum, wählt eines der modularen Quizzes aus und steuert den Ablauf. Teilnehmende treten einfach per Raumcode oder QR-Code mit Smartphone, Tablet oder Laptop bei und stimmen live ab.
 
-Die Anwendung besteht aus einem ASP.NET-Core-Backend mit SignalR und einem Vue-3-Frontend.
+Die Anwendung besteht aus einem ASP.NET-Core-Backend mit SignalR und einem modernen Vue-3-Frontend.
 
 ## Funktionen
 
-- Quizraeume mit automatisch generiertem Raumcode
-- Beitritt fuer Teilnehmende per Raumcode oder QR-Code
-- Echtzeit-Kommunikation zwischen Moderation und Teilnehmenden mit SignalR
-- Konfigurierbare Zeit pro Frage und maximale Spielerzahl
-- Fortschrittsanzeige fuer eingegangene Antworten
-- Punkteberechnung und Siegerpodest am Quizende
-- Optionale Medien pro Frage
-- Health-Endpoint fuer die Backend-Pruefung
+- **Modulare Quiz-Verwaltung:** Quizzes werden als separate JSON-Dateien im Ordner `quizzes/` abgelegt und automatisch geladen.
+- **Mehrfachauswahl (Multiple Correct Answers):** Fragen können eine oder mehrere richtige Antworten haben. Wenn mehrere Antworten richtig sind, wird dies sowohl Moderation als auch Teilnehmenden prominent angezeigt, inklusive Mehrfachauswahl-Buttons.
+- **Kahoot-Feeling:** Schnelle Punktevergabe basierend auf Antwortgeschwindigkeit, Live-Countdown, Answer-Reveal und ein dynamisches Siegerpodest.
+- **Echtzeit-SignalR:** Automatische Synchronisation von Raumcodes, Fragen, Antworten und Punkteständen ohne Neuladen.
+- **Flexibles Hosting:** Einstellbare Zeitlimits pro Frage, Maximalspieler und automatische Erkennung neuer Quizzes.
 
 ## Voraussetzungen
 
@@ -25,98 +22,75 @@ Die Anwendung besteht aus einem ASP.NET-Core-Backend mit SignalR und einem Vue-3
 
 ### 1. Backend starten
 
-Im Projektverzeichnis:
+Im Verzeichnis `QuizHub`:
 
 ```powershell
 dotnet run --project backend/QuizHub.Api/QuizHub.Api.csproj
 ```
 
-Das Backend stellt den SignalR-Hub unter `http://localhost:5000/quizHub` bereit. Der Health-Endpoint ist unter `http://localhost:5000/health` erreichbar.
+Das Backend scannt automatisch den Ordner `quizzes/`, stellt die API unter `http://localhost:5000/api/quizzes` und den SignalR-Hub unter `http://localhost:5000/quizHub` bereit.
 
 ### 2. Frontend starten
 
-In einem zweiten Terminal:
+In einem zweiten Terminal im Verzeichnis `QuizHub/frontend`:
 
 ```powershell
-cd frontend
 npm install
 npm run dev
 ```
 
-Danach ist das Frontend normalerweise unter `http://localhost:5173` erreichbar.
+Danach ist das Frontend unter `http://localhost:5173` erreichbar.
 
-## Verwendung
+## Quizzes erstellen & anpassen
 
-### Moderation
+Alle Quizzes liegen als `.json`-Dateien im Ordner `QuizHub/quizzes/`. Du kannst beliebig viele eigene Quizzes hinzufügen!
 
-1. `http://localhost:5173/?mode=admin` oeffnen.
-2. Zeit pro Frage und maximale Spielerzahl festlegen.
-3. Einen Quizraum erstellen.
-4. Den angezeigten Raumcode oder QR-Code an die Teilnehmenden weitergeben.
-5. Das Quiz starten und die Fragen steuern.
-
-### Teilnehmende
-
-1. `http://localhost:5173/` oeffnen oder den QR-Code scannen.
-2. Raumcode und Namen eingeben.
-3. Dem Quiz beitreten.
-4. Antworten direkt auf dem eigenen Geraet abgeben.
-
-## Konfiguration
-
-### SignalR-URL
-
-Standardmaessig verwendet das Frontend den relativen Pfad `/quizHub`. Wenn das Backend unter einer anderen Adresse laeuft, kann die URL ueber `VITE_HUB_URL` gesetzt werden:
-
-```powershell
-$env:VITE_HUB_URL = "https://quiz-api.example.com/quizHub"
-npm run dev
-```
-
-### CORS
-
-Erlaubte Frontend-Urspruenge werden in `backend/QuizHub.Api/appsettings.json` unter `AllowedOrigins` gepflegt. Fuer eine Produktion muss dort die tatsaechliche Frontend-Domain eingetragen werden.
-
-Beispiel:
+### Quiz-Aufbau (JSON)
 
 ```json
 {
-	"AllowedOrigins": [
-		"https://quiz.example.com"
-	]
+  "name": "Dein Quizname",
+  "description": "Optionale Beschreibung des Quizthemas",
+  "questions": [
+    {
+      "question": "Welche Antwort ist hier richtig?",
+      "options": [
+        { "text": "Antwort 1", "isCorrect": true },
+        { "text": "Antwort 2", "isCorrect": false },
+        { "text": "Antwort 3", "isCorrect": false },
+        { "text": "Antwort 4", "isCorrect": false }
+      ],
+      "timeLimitSeconds": 20
+    },
+    {
+      "question": "Welche dieser Aussagen treffen zu? (Mehrere richtig)",
+      "options": [
+        { "text": "Antwort A", "isCorrect": false },
+        { "text": "Antwort B", "isCorrect": true },
+        { "text": "Antwort C", "isCorrect": true },
+        { "text": "Antwort D", "isCorrect": false }
+      ],
+      "timeLimitSeconds": 25
+    }
+  ]
 }
 ```
 
-## Fragen bearbeiten
-
-Die Fragen werden aus `frontend/src/questions.json` geladen. Jede Frage kann folgende Eigenschaften enthalten:
-
-```json
-{
-	"id": 1,
-	"question": "Fragetext",
-	"mediaUrl": null,
-	"options": ["Antwort A", "Antwort B", "Antwort C", "Antwort D"],
-	"correctIndex": 1,
-	"timeLimitSeconds": 20
-}
-```
-
-`correctIndex` ist der nullbasierte Index der richtigen Antwort. Die aktuell eingestellte Zeit pro Frage wird von der Moderation festgelegt.
+- **Mehrere richtige Antworten:** Wenn 2 oder mehr Optionen `"isCorrect": true` haben, erkennt das System die Frage automatisch als Mehrfachauswahl und signalisiert dies allen Spielern.
+- **Zeitlimit:** Über `timeLimitSeconds` kann jede Frage ihr eigenes Zeitlimit erhalten.
 
 ## Projektstruktur
 
 ```text
-backend/QuizHub.Api/   ASP.NET-Core-API und SignalR-Hub
+quizzes/               Modulare Quiz-Dateien (z. B. allgemeinwissen.json, gaming-und-popkultur.json)
+backend/QuizHub.Api/   ASP.NET-Core-API, SignalR-Hub & Quiz-Repository
 frontend/src/          Vue-Anwendung
-frontend/src/views/    Ansichten fuer Moderation und Teilnehmende
-frontend/src/questions.json
-											 Fragenkatalog
+frontend/src/views/    Ansichten fuer Moderation (AdminView) und Teilnehmende (PlayerView)
 ```
 
 ## Build
 
-Frontend fuer die Auslieferung bauen:
+Frontend für die Produktion bauen:
 
 ```powershell
 cd frontend

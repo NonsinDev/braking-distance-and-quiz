@@ -1,0 +1,51 @@
+{
+  "name": "Allgemeinwissen & Kahoot-Mix",
+  "description": "Bunter Fragenmix aus Geografie, Kultur, Geschichte und Alltagswissen",
+  "questions": [
+    {
+      "question": "Was ist die Hauptstadt von Australien?",
+      "options": [
+        { "text": "Sydney", "isCorrect": false },
+        { "text": "Canberra", "isCorrect": true },
+        { "text": "Melbourne", "isCorrect": false },
+        { "text": "Brisbane", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Länder grenzen direkt an Deutschland?",
+      "options": [
+        { "text": "Polen", "isCorrect": true },
+        { "text": "Italien", "isCorrect": false },
+        { "text": "Dänemark", "isCorrect": true },
+        { "text": "Ungarn", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Aus wie vielen Zähnen besteht das vollständige bleibende Gebiss eines Erwachsenen (inkl. Weisheitszähne)?",
+      "options": [
+        { "text": "28 Zähne", "isCorrect": false },
+        { "text": "30 Zähne", "isCorrect": false },
+        { "text": "32 Zähne", "isCorrect": true },
+        { "text": "34 Zähne", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Meere sind Nebenmeere des Atlantischen Ozeans?",
+      "options": [
+        { "text": "Nordsee", "isCorrect": true },
+        { "text": "Ostsee", "isCorrect": true },
+        { "text": "Rotes Meer", "isCorrect": false },
+        { "text": "Mittelmeer", "isCorrect": true }
+      ]
+    },
+    {
+      "question": "Welches chemische Element hat das Elementsymbol 'Fe'?",
+      "options": [
+        { "text": "Fluor", "isCorrect": false },
+        { "text": "Eisen", "isCorrect": true },
+        { "text": "Fermium", "isCorrect": false },
+        { "text": "Kupfer", "isCorrect": false }
+      ]
+    }
+  ]
+}

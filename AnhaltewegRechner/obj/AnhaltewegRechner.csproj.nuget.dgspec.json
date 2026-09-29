@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dennis\\Desktop\\AnhaltewegRechner\\AnhaltewegRechner\\AnhaltewegRechner.csproj": {}
+    "C:\\dev\\Private\\braking-distance-and-quiz\\AnhaltewegRechner\\AnhaltewegRechner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dennis\\Desktop\\AnhaltewegRechner\\AnhaltewegRechner\\AnhaltewegRechner.csproj": {
+    "C:\\dev\\Private\\braking-distance-and-quiz\\AnhaltewegRechner\\AnhaltewegRechner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dennis\\Desktop\\AnhaltewegRechner\\AnhaltewegRechner\\AnhaltewegRechner.csproj",
+        "projectUniqueName": "C:\\dev\\Private\\braking-distance-and-quiz\\AnhaltewegRechner\\AnhaltewegRechner.csproj",
         "projectName": "AnhaltewegRechner",
-        "projectPath": "C:\\Users\\Dennis\\Desktop\\AnhaltewegRechner\\AnhaltewegRechner\\AnhaltewegRechner.csproj",
-        "packagesPath": "C:\\Users\\Dennis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dennis\\Desktop\\AnhaltewegRechner\\AnhaltewegRechner\\obj\\",
+        "projectPath": "C:\\dev\\Private\\braking-distance-and-quiz\\AnhaltewegRechner\\AnhaltewegRechner.csproj",
+        "packagesPath": "C:\\Users\\silas.mohr\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\Private\\braking-distance-and-quiz\\AnhaltewegRechner\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dennis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\silas.mohr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +27,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://gitlab.server-eye.cloud/api/v4/projects/1117/packages/nuget/index.json": {}
         },
         "frameworks": {
           "net8.0-windows": {
@@ -46,7 +47,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net8.0-windows": {
@@ -63,24 +64,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.31, 8.0.31]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.31, 8.0.31]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.31, 8.0.31]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.31, 8.0.31]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -89,7 +72,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

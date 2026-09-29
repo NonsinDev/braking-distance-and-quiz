@@ -10,11 +10,12 @@ const isAdmin = computed(() => mode.value === 'admin')
 <template>
   <main>
     <div v-if="!mode" class="mode-picker">
-      <p class="eyebrow">FAHRSICHER / LIVE TRAINING</p>
-      <h1>Verkehrssicherheit<br /><em>gemeinsam</em> erleben.</h1>
-      <p class="intro">Interaktives Quiz für Polizei und Fahrsicherheitstraining.</p>
+      <div class="brand-mark"><span>QH</span> QUIZHUB</div>
+      <p class="eyebrow" style="margin-top: 24px;">LIVE MULTIPLAYER QUIZ</p>
+      <h1>Wissen testen.<br /><em>Gemeinsam</em> spielen.</h1>
+      <p class="intro">Das vielseitige Live-Quiz für Events, Partys, Unterricht und Wissensthemen aller Art — wie Kahoot, modular und direkt im Browser.</p>
       <div class="mode-actions">
-        <button class="primary-action" @click="mode = 'admin'">Quiz Hosten</button>
+        <button class="primary-action" @click="mode = 'admin'">Quiz Hosten <span>→</span></button>
         <button class="secondary-action" @click="mode = 'player'">Quiz Beitreten</button>
       </div>
     </div>

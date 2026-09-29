@@ -14,10 +14,17 @@ builder.Services.AddCors(options => options.AddPolicy(corsPolicy, policy =>
         .AllowCredentials();
 }));
 
+builder.Services.AddSingleton<IQuizRepository, QuizRepository>();
 builder.Services.AddSignalR(options => options.EnableDetailedErrors = builder.Environment.IsDevelopment());
 
 var app = builder.Build();
 app.UseCors(corsPolicy);
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
+app.MapGet("/api/quizzes", (IQuizRepository repo) => Results.Ok(repo.GetAvailableQuizzes()));
+app.MapGet("/api/quizzes/{id}", (string id, IQuizRepository repo) =>
+{
+    var quiz = repo.GetQuiz(id);
+    return quiz is not null ? Results.Ok(quiz) : Results.NotFound();
+});
 app.MapHub<global::QuizHub.Api.QuizHub>("/quizHub");
 app.Run();

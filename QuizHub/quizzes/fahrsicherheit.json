@@ -1,0 +1,42 @@
+{
+  "name": "Fahrsicherheit & Straßenverkehr",
+  "description": "Fahrphysik, Bremswege und sicheres Verhalten im Straßenverkehr",
+  "questions": [
+    {
+      "question": "Wie verändert sich der Anhalteweg bei Verdopplung der Geschwindigkeit?",
+      "options": [
+        { "text": "Er verdoppelt sich", "isCorrect": false },
+        { "text": "Er vervierfacht sich", "isCorrect": true },
+        { "text": "Er verdreifacht sich", "isCorrect": false },
+        { "text": "Er bleibt gleich", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Faktoren verlängern den Bremsweg eines Fahrzeugs?",
+      "options": [
+        { "text": "Nasse Fahrbahn oder Glätte", "isCorrect": true },
+        { "text": "Abgefahrene Reifenprofile", "isCorrect": true },
+        { "text": "Höheres Fahrzeuggewicht / Beladung", "isCorrect": true },
+        { "text": "Eingeschaltetes Abblendlicht", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Wirkung hat Aquaplaning primär auf das Fahrzeug?",
+      "options": [
+        { "text": "Bessere Haftung", "isCorrect": false },
+        { "text": "Verlust der Lenkbarkeit", "isCorrect": true },
+        { "text": "Höhere Geschwindigkeit", "isCorrect": false },
+        { "text": "Motor stirbt ab", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Was gehört zur korrekten Reaktion bei plötzlichem Glatteis?",
+      "options": [
+        { "text": "Ruckartiges Lenken vermeiden", "isCorrect": true },
+        { "text": "Kupplung treten und gefühlvoll bremsen", "isCorrect": true },
+        { "text": "Vollgas geben", "isCorrect": false },
+        { "text": "Handbremse anreißen", "isCorrect": false }
+      ]
+    }
+  ]
+}

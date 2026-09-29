@@ -3,19 +3,27 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace QuizHub.Api;
 
-public sealed class QuizHub : Hub
+public sealed class QuizHub(IQuizRepository quizRepository) : Hub
 {
     private static readonly ConcurrentDictionary<string, Lobby> Lobbies = new();
     private static readonly ConcurrentDictionary<string, string> ConnectionLobbies = new();
     private static readonly Random Random = new();
     private static readonly object RandomLock = new();
 
-    public Task<LobbyCreated> CreateLobby(int questionDurationSeconds, int maxPlayers)
+    public Task<IReadOnlyList<QuizSummaryDto>> GetAvailableQuizzes()
+    {
+        return Task.FromResult(quizRepository.GetAvailableQuizzes());
+    }
+
+    public async Task<LobbyCreated> CreateLobby(string? quizId, int questionDurationSeconds, int maxPlayers)
     {
         if (questionDurationSeconds is < 10 or > 600)
             throw new HubException("Die Fragezeit muss zwischen 10 und 600 Sekunden liegen.");
         if (maxPlayers is < 1 or > 100)
             throw new HubException("Es sind maximal 100 Spieler möglich.");
+
+        var quiz = quizRepository.GetQuiz(quizId)
+            ?? throw new HubException("Kein passendes Quiz gefunden.");
 
         string code;
         do
@@ -24,10 +32,11 @@ public sealed class QuizHub : Hub
             {
                 code = Random.Next(1000, 10000).ToString();
             }
-        } while (!Lobbies.TryAdd(code, new Lobby(code, Context.ConnectionId, questionDurationSeconds, maxPlayers)));
+        } while (!Lobbies.TryAdd(code, new Lobby(code, Context.ConnectionId, quiz, questionDurationSeconds, maxPlayers)));
 
         ConnectionLobbies[Context.ConnectionId] = code;
-        return Task.FromResult(new LobbyCreated(code, Context.ConnectionId));
+        await Groups.AddToGroupAsync(Context.ConnectionId, code);
+        return new LobbyCreated(code, Context.ConnectionId, quiz.Id, quiz.Name, quiz.Questions.Count);
     }
 
     public async Task JoinLobby(string code, string playerName)
@@ -52,26 +61,59 @@ public sealed class QuizHub : Hub
         ConnectionLobbies[Context.ConnectionId] = code;
         await Groups.AddToGroupAsync(Context.ConnectionId, code);
         await Clients.Client(lobby.AdminConnectionId).SendAsync("PlayerJoined", new PlayerDto(player.Id, player.Name));
-        await Clients.Caller.SendAsync("LobbyJoined", new LobbyDto(code, lobby.Players.Values.Select(ToDto).ToArray()));
+        await Clients.Caller.SendAsync("LobbyJoined", new LobbyDto(code, lobby.Quiz.Name, lobby.Players.Values.Select(ToDto).ToArray()));
     }
 
-    public async Task StartNextQuestion(string code, int questionIndex, int correctAnswerIndex)
+    public async Task<QuestionStartedDto> StartNextQuestion(string code, int questionIndex)
     {
         var lobby = GetLobbyForAdmin(code);
+        QuizQuestion question;
+        int timeLimit;
         lock (lobby.SyncRoot)
         {
+            if (questionIndex < 0 || questionIndex >= lobby.Quiz.Questions.Count)
+                throw new HubException("Ungültiger Frage-Index.");
+
+            question = lobby.Quiz.Questions[questionIndex];
             lobby.CurrentQuestionIndex = questionIndex;
-            lobby.CorrectAnswerIndex = correctAnswerIndex;
+            lobby.CorrectAnswerIndices = question.CorrectIndices;
+            timeLimit = lobby.QuestionDurationSeconds;
+            lobby.ActiveTimeLimitSeconds = timeLimit;
             lobby.QuestionStartedAt = DateTimeOffset.UtcNow;
             lobby.Answers.Clear();
         }
 
-        await Clients.Group(lobby.Code).SendAsync("QuestionStarted", new
-        {
+        var questionDto = new QuestionStartedDto(
             questionIndex,
-            startedAt = lobby.QuestionStartedAt,
-        });
+            lobby.Quiz.Questions.Count,
+            question.Question,
+            question.Options.Select(o => o.Text).ToArray(),
+            timeLimit,
+            question.HasMultipleCorrectAnswers,
+            question.CorrectIndices.Length,
+            question.MediaUrl,
+            lobby.QuestionStartedAt.Value
+        );
+
+        await Clients.Group(lobby.Code).SendAsync("QuestionStarted", questionDto);
         await Clients.Client(lobby.AdminConnectionId).SendAsync("AnswersUpdated", new AnswersProgress(0, lobby.Players.Count));
+        return questionDto;
+    }
+
+    public async Task<QuestionEndedDto> RevealQuestion(string code)
+    {
+        var lobby = GetLobbyForAdmin(code);
+        int questionIndex;
+        int[] correctIndices;
+        lock (lobby.SyncRoot)
+        {
+            questionIndex = lobby.CurrentQuestionIndex;
+            correctIndices = lobby.CorrectAnswerIndices;
+        }
+
+        var dto = new QuestionEndedDto(questionIndex, correctIndices);
+        await Clients.Group(lobby.Code).SendAsync("QuestionEnded", dto);
+        return dto;
     }
 
     public async Task EndQuiz(string code)
@@ -81,7 +123,12 @@ public sealed class QuizHub : Hub
         await Clients.Group(lobby.Code).SendAsync("QuizEnded", scores);
     }
 
-    public async Task SubmitAnswer(string code, int selectedOption)
+    public Task SubmitSingleAnswer(string code, int selectedOption)
+    {
+        return SubmitAnswer(code, [selectedOption]);
+    }
+
+    public async Task SubmitAnswer(string code, int[] selectedOptions)
     {
         if (!Lobbies.TryGetValue(NormalizeCode(code), out var lobby))
             throw new HubException("Dieser Raum wurde nicht gefunden.");
@@ -96,12 +143,32 @@ public sealed class QuizHub : Hub
                 return;
 
             var elapsedSeconds = (DateTimeOffset.UtcNow - lobby.QuestionStartedAt.Value).TotalSeconds;
-            var isWithinTimeLimit = elapsedSeconds < lobby.QuestionDurationSeconds;
-            var isCorrect = isWithinTimeLimit && selectedOption == lobby.CorrectAnswerIndex;
-            var points = isCorrect ? Math.Max(0, (int)Math.Round(1000 - elapsedSeconds * 50)) : 0;
+            var isWithinTimeLimit = elapsedSeconds <= (lobby.ActiveTimeLimitSeconds + 1.5);
+
+            var correctSet = lobby.CorrectAnswerIndices.ToHashSet();
+            var selectedSet = (selectedOptions ?? []).Distinct().ToHashSet();
+
+            bool isFullyCorrect = isWithinTimeLimit && selectedSet.SetEquals(correctSet);
+            bool hasWrongSelection = selectedSet.Any(s => !correctSet.Contains(s));
+            int correctChosen = selectedSet.Count(s => correctSet.Contains(s));
+            bool isPartial = isWithinTimeLimit && !isFullyCorrect && !hasWrongSelection && correctChosen > 0;
+
+            int duration = Math.Max(1, lobby.ActiveTimeLimitSeconds);
+            int basePoints = isWithinTimeLimit ? Math.Max(100, (int)Math.Round(1000 - (elapsedSeconds / duration) * 500)) : 0;
+            int points = 0;
+
+            if (isFullyCorrect)
+            {
+                points = basePoints;
+            }
+            else if (isPartial && correctSet.Count > 0)
+            {
+                points = (int)Math.Round(basePoints * ((double)correctChosen / correctSet.Count));
+            }
+
             player.Score += points;
-            lobby.Answers[Context.ConnectionId] = new Answer(selectedOption, isCorrect, points);
-            result = new AnswerResult(isCorrect, points);
+            lobby.Answers[Context.ConnectionId] = new Answer(selectedOptions ?? [], isFullyCorrect, points, isPartial);
+            result = new AnswerResult(isFullyCorrect, points, isPartial);
             progress = new AnswersProgress(lobby.Answers.Count, lobby.Players.Count);
         }
 

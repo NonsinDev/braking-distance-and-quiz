@@ -1,0 +1,42 @@
+{
+  "name": "Gaming & Popkultur",
+  "description": "Kultige Fragen rund um Videospiele, Filme, Comics und Internetphänomene",
+  "questions": [
+    {
+      "question": "Wie heißt die Prinzessin, die Mario in den meisten Super-Mario-Spielen rettet?",
+      "options": [
+        { "text": "Daisy", "isCorrect": false },
+        { "text": "Peach", "isCorrect": true },
+        { "text": "Zelda", "isCorrect": false },
+        { "text": "Rosalina", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Charaktere sind Mitglieder der Avengers im Marvel Cinematic Universe?",
+      "options": [
+        { "text": "Iron Man", "isCorrect": true },
+        { "text": "Thor", "isCorrect": true },
+        { "text": "Batman", "isCorrect": false },
+        { "text": "Black Widow", "isCorrect": true }
+      ]
+    },
+    {
+      "question": "In welchem Jahr erschien das weltbekannte Spiel Minecraft in seiner ersten Version?",
+      "options": [
+        { "text": "2007", "isCorrect": false },
+        { "text": "2009", "isCorrect": true },
+        { "text": "2011", "isCorrect": false },
+        { "text": "2013", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Spiele wurden von Valve entwickelt oder vertrieben?",
+      "options": [
+        { "text": "Half-Life", "isCorrect": true },
+        { "text": "Portal", "isCorrect": true },
+        { "text": "Overwatch", "isCorrect": false },
+        { "text": "Counter-Strike", "isCorrect": true }
+      ]
+    }
+  ]
+}

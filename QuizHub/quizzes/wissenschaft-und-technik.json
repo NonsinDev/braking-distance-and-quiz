@@ -1,0 +1,42 @@
+{
+  "name": "Wissenschaft & Moderne Technik",
+  "description": "Spannende Fragen aus Astronomie, Informatik und Naturwissenschaften",
+  "questions": [
+    {
+      "question": "Welche dieser Planeten unseres Sonnensystems sind Gasplaneten?",
+      "options": [
+        { "text": "Jupiter", "isCorrect": true },
+        { "text": "Mars", "isCorrect": false },
+        { "text": "Saturn", "isCorrect": true },
+        { "text": "Venus", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Wie lautet die annähernde Lichtgeschwindigkeit im Vakuum?",
+      "options": [
+        { "text": "ca. 30.000 km/s", "isCorrect": false },
+        { "text": "ca. 300.000 km/s", "isCorrect": true },
+        { "text": "ca. 3.000.000 km/s", "isCorrect": false },
+        { "text": "ca. 3.000 km/s", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Sprachen sind Programmiersprachen?",
+      "options": [
+        { "text": "Python", "isCorrect": true },
+        { "text": "C#", "isCorrect": true },
+        { "text": "HTML", "isCorrect": false },
+        { "text": "Rust", "isCorrect": true }
+      ]
+    },
+    {
+      "question": "Welches Organ im menschlichen Körper verbraucht den größten Anteil an Energie?",
+      "options": [
+        { "text": "Herz", "isCorrect": false },
+        { "text": "Leber", "isCorrect": false },
+        { "text": "Gehirn", "isCorrect": true },
+        { "text": "Lunge", "isCorrect": false }
+      ]
+    }
+  ]
+}
