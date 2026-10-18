@@ -34,8 +34,10 @@ public sealed class QuizRepository : IQuizRepository
             Path.Combine(AppContext.BaseDirectory, "quizzes"),
             Path.GetFullPath(Path.Combine(environment.ContentRootPath, "..", "..", "quizzes")),
             Path.GetFullPath(Path.Combine(environment.ContentRootPath, "..", "quizzes")),
+            Path.GetFullPath(Path.Combine(environment.ContentRootPath, "..", "frontend", "quizzes")),
             Path.Combine(environment.ContentRootPath, "quizzes"),
             Path.Combine(Directory.GetCurrentDirectory(), "quizzes"),
+            Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "frontend", "quizzes")),
             Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "quizzes"))
         ];
 

@@ -1,0 +1,114 @@
+{
+  "name": "Film, Serien & Legendäre Soundtracks",
+  "description": "Großes Kino und Serien-Klassiker: Zitate, Meilensteine, Meister-Regisseure und Popkultur-Highlights",
+  "questions": [
+    {
+      "question": "Welcher berühmte Filmkomponist schrieb die unverkennbaren Soundtracks zu 'Star Wars', 'Indiana Jones' und 'Harry Potter'?",
+      "options": [
+        { "text": "Hans Zimmer", "isCorrect": false },
+        { "text": "John Williams", "isCorrect": true },
+        { "text": "Ennio Morricone", "isCorrect": false },
+        { "text": "Howard Shore", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Filme gewannen jeweils die Rekordzahl von 11 Oscars?",
+      "options": [
+        { "text": "Ben Hur (1959)", "isCorrect": true },
+        { "text": "Titanic (1997)", "isCorrect": true },
+        { "text": "Der Herr der Ringe: Die Rückkehr des Königs (2003)", "isCorrect": true },
+        { "text": "Avatar (2009)", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "In welcher TV-Kultserie verwandelt sich der Chemielehrer Walter White in den Drogenboss 'Heisenberg'?",
+      "options": [
+        { "text": "Better Call Saul", "isCorrect": false },
+        { "text": "Breaking Bad", "isCorrect": true },
+        { "text": "The Sopranos", "isCorrect": false },
+        { "text": "Ozark", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Filme stammen von Regisseur Christopher Nolan?",
+      "options": [
+        { "text": "Inception", "isCorrect": true },
+        { "text": "Interstellar", "isCorrect": true },
+        { "text": "Oppenheimer", "isCorrect": true },
+        { "text": "Pulp Fiction", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Aus welchem Kultfilm stammt das legendäre Zitat: 'Möge die Macht mit dir sein'?",
+      "options": [
+        { "text": "Star Wars (Krieg der Sterne)", "isCorrect": true },
+        { "text": "Star Trek", "isCorrect": false },
+        { "text": "Dune", "isCorrect": false },
+        { "text": "Matrix", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Farbe hat die Pille, die Neo in 'Matrix' schluckt, um die Wahrheit über die Realität zu erfahren?",
+      "options": [
+        { "text": "Blau", "isCorrect": false },
+        { "text": "Rot", "isCorrect": true },
+        { "text": "Grün", "isCorrect": false },
+        { "text": "Gelb", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Animationsfilme wurden vom japanischen Studio Ghibli unter Hayao Miyazaki produziert?",
+      "options": [
+        { "text": "Chihiros Reise ins Zauberland", "isCorrect": true },
+        { "text": "Prinzessin Mononoke", "isCorrect": true },
+        { "text": "Mein Nachbar Totoro", "isCorrect": true },
+        { "text": "Your Name.", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Wie heißt das Raumschiff von Han Solo und Chewbacca im Star-Wars-Universum?",
+      "options": [
+        { "text": "Millennium Falke (Millennium Falcon)", "isCorrect": true },
+        { "text": "Sternenzerstörer", "isCorrect": false },
+        { "text": "TIE Fighter", "isCorrect": false },
+        { "text": "USS Enterprise", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welcher Schauspieler verkörperte den 'Joker' in Christopher Nolans Batman-Film 'The Dark Knight' (2008)?",
+      "options": [
+        { "text": "Heath Ledger", "isCorrect": true },
+        { "text": "Joaquin Phoenix", "isCorrect": false },
+        { "text": "Jack Nicholson", "isCorrect": false },
+        { "text": "Jared Leto", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Serien basieren auf literarischen Buchvorlagen?",
+      "options": [
+        { "text": "Game of Thrones", "isCorrect": true },
+        { "text": "The Witcher", "isCorrect": true },
+        { "text": "Das Damengambit (The Queen's Gambit)", "isCorrect": true },
+        { "text": "Stranger Things", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "In welcher fiktiven Stadt spielt der Großteil der Zeichentrickserie 'Die Simpsons'?",
+      "options": [
+        { "text": "Quahog", "isCorrect": false },
+        { "text": "South Park", "isCorrect": false },
+        { "text": "Springfield", "isCorrect": true },
+        { "text": "Bikini Bottom", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welcher dieser Filme wurde unter der Regie von Steven Spielberg gedreht?",
+      "options": [
+        { "text": "Jurassic Park", "isCorrect": true },
+        { "text": "Schindlers Liste", "isCorrect": true },
+        { "text": "Der weiße Hai (Jaws)", "isCorrect": true },
+        { "text": "Avatar", "isCorrect": false }
+      ]
+    }
+  ]
+}

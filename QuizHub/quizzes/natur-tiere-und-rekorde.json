@@ -1,0 +1,114 @@
+{
+  "name": "Natur, Tierwelt & Rekorde der Evolution",
+  "description": "Faszinierende Tierarten, Ökosysteme, Meeresbiologie und verblüffende Rekorde der lebendigen Natur",
+  "questions": [
+    {
+      "question": "Welches Tier ist das größte und schwerste lebende Tier auf unserem Planeten?",
+      "options": [
+        { "text": "Blauwal", "isCorrect": true },
+        { "text": "Afrikanischer Elefant", "isCorrect": false },
+        { "text": "Walhai", "isCorrect": false },
+        { "text": "Pottwal", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Tiere gehören biologisch gesehen zu den Säugetieren (Mammalia)?",
+      "options": [
+        { "text": "Delfin", "isCorrect": true },
+        { "text": "Fledermaus", "isCorrect": true },
+        { "text": "Schnabeltier", "isCorrect": true },
+        { "text": "Weißer Hai", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welches Landsäugetier erreicht die höchste Sprintgeschwindigkeit (bis zu ca. 110-120 km/h)?",
+      "options": [
+        { "text": "Gepard", "isCorrect": true },
+        { "text": "Löwe", "isCorrect": false },
+        { "text": "Springbock", "isCorrect": false },
+        { "text": "Windhund", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Meerestiere besitzen blaues Blut, da sie Hämocyanin mit Kupfer statt Hämoglobin mit Eisen nutzen?",
+      "options": [
+        { "text": "Kraken (Oktopusse)", "isCorrect": true },
+        { "text": "Pfeilschwanzkrebse", "isCorrect": true },
+        { "text": "Tintenfische (Kalmare)", "isCorrect": true },
+        { "text": "Heringshaie", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Wie viele Herzen besitzt ein Tintenfisch / Oktopus?",
+      "options": [
+        { "text": "1 Herz", "isCorrect": false },
+        { "text": "2 Herzen", "isCorrect": false },
+        { "text": "3 Herzen", "isCorrect": true },
+        { "text": "4 Herzen", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welcher Vogel ist der schnellste Vogel der Welt im Sturzflug (über 300 km/h)?",
+      "options": [
+        { "text": "Wanderfalke", "isCorrect": true },
+        { "text": "Steinadler", "isCorrect": false },
+        { "text": "Mauersegler", "isCorrect": false },
+        { "text": "Kolibri", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Pflanzen bzw. Bäume können über tausend Jahre alt werden?",
+      "options": [
+        { "text": "Mammutbaum (Sequoiadendron)", "isCorrect": true },
+        { "text": "Grannenkiefer (Pinus longaeva)", "isCorrect": true },
+        { "text": "Olivenbaum", "isCorrect": true },
+        { "text": "Sonnenblume", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welches Gas nehmen Pflanzen primär tagsüber bei der Photosynthese auf, um Glucose zu produzieren?",
+      "options": [
+        { "text": "Kohlendioxid (CO2)", "isCorrect": true },
+        { "text": "Stickstoff (N2)", "isCorrect": false },
+        { "text": "Methan (CH4)", "isCorrect": false },
+        { "text": "Helium (He)", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Auf welchem Kontinent leben Beuteltiere wie Koalas, Kängurus und Wombats in freier Wildbahn?",
+      "options": [
+        { "text": "Australien", "isCorrect": true },
+        { "text": "Afrika", "isCorrect": false },
+        { "text": "Asien", "isCorrect": false },
+        { "text": "Europa", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Insekten leben in komplexen Staaten mit Königinnen und Arbeiterinnen (Eusozialität)?",
+      "options": [
+        { "text": "Honigbienen", "isCorrect": true },
+        { "text": "Ameisen", "isCorrect": true },
+        { "text": "Termiten", "isCorrect": true },
+        { "text": "Stubenfliegen", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Eigenschaft trifft auf Bärtierchen (Tardigraden) zu?",
+      "options": [
+        { "text": "Sie können extreme Kälte, Hitze, radioaktive Strahlung und das Vakuum des Weltalls überleben", "isCorrect": true },
+        { "text": "Sie sind giftige Schlangenarten der Tropen", "isCorrect": false },
+        { "text": "Sie können nur in kochendem Wasser leben", "isCorrect": false },
+        { "text": "Sie ernähren sich ausschließlich von Walfischen", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Was versteht man in der Biologie unter einer 'Symbiose'?",
+      "options": [
+        { "text": "Das Zusammenleben verschiedener Arten zu beiderseitigem Nutzen", "isCorrect": true },
+        { "text": "Einen einseitigen Parasitenbefall zum Nachteil des Wirts", "isCorrect": false },
+        { "text": "Den Prozess des biologischen Aussterbens", "isCorrect": false },
+        { "text": "Die künstliche Klonung von Organismen", "isCorrect": false }
+      ]
+    }
+  ]
+}

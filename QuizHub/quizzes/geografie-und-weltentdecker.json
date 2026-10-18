@@ -1,0 +1,114 @@
+{
+  "name": "Geografie, Kontinente & Weltentdecker",
+  "description": "Eine abenteuerliche Reise rund um den Globus: Hauptstädte, extreme Orte, Gewässer und Rekorde",
+  "questions": [
+    {
+      "question": "Welcher Fluss ist gemessen an der Wasserführung der mit Abstand wasserreichste der Erde?",
+      "options": [
+        { "text": "Nil", "isCorrect": false },
+        { "text": "Amazonas", "isCorrect": true },
+        { "text": "Jangtsekiang", "isCorrect": false },
+        { "text": "Mississippi", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Hauptstädte liegen in Europa?",
+      "options": [
+        { "text": "Lissabon", "isCorrect": true },
+        { "text": "Helsinki", "isCorrect": true },
+        { "text": "Reykjavík", "isCorrect": true },
+        { "text": "Ottawa", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Wie heißt der tiefste bekannte Punkt der Weltmeere?",
+      "options": [
+        { "text": "Marianengraben (Witjastief 1)", "isCorrect": true },
+        { "text": "Sundagraben", "isCorrect": false },
+        { "text": "Puerto-Rico-Graben", "isCorrect": false },
+        { "text": "Kermadecgraben", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Durch welche dieser Länder verläuft der Äquator?",
+      "options": [
+        { "text": "Ecuador", "isCorrect": true },
+        { "text": "Indonesien", "isCorrect": true },
+        { "text": "Kenia", "isCorrect": true },
+        { "text": "Argentinien", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welches Land hat die meisten natürlichen Inseln der Welt (über 200.000)?",
+      "options": [
+        { "text": "Schweden", "isCorrect": true },
+        { "text": "Griechenland", "isCorrect": false },
+        { "text": "Philippinen", "isCorrect": false },
+        { "text": "Norwegen", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welcher Berg ist der höchste Gipfel des afrikanischen Kontinents?",
+      "options": [
+        { "text": "Mount Kenya", "isCorrect": false },
+        { "text": "Kibo (Kilimandscharo-Massiv)", "isCorrect": true },
+        { "text": "Mount Stanley", "isCorrect": false },
+        { "text": "Ras Daschän", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Meere sind vollständig von Land umschlossene Binnengewässer (Seen ohne natürlichen Meeresabfluss)?",
+      "options": [
+        { "text": "Kaspisches Meer", "isCorrect": true },
+        { "text": "Totes Meer", "isCorrect": true },
+        { "text": "Schwarzes Meer", "isCorrect": false },
+        { "text": "Nordsee", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Wie heißt die offizielle Hauptstadt von Kanada?",
+      "options": [
+        { "text": "Toronto", "isCorrect": false },
+        { "text": "Vancouver", "isCorrect": false },
+        { "text": "Ottawa", "isCorrect": true },
+        { "text": "Montreal", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Wüste gilt als die trockenste Nicht-Polare Wüste der Erde?",
+      "options": [
+        { "text": "Sahara", "isCorrect": false },
+        { "text": "Atacama-Wüste", "isCorrect": true },
+        { "text": "Gobi", "isCorrect": false },
+        { "text": "Kalahari", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Länder haben KEINEN direkten Zugang zum offenen Meer (Binnenstaaten)?",
+      "options": [
+        { "text": "Schweiz", "isCorrect": true },
+        { "text": "Österreich", "isCorrect": true },
+        { "text": "Mongolei", "isCorrect": true },
+        { "text": "Portugal", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Auf welchem Kontinent befindet sich der höchste Wasserfall der Welt (Salto Ángel)?",
+      "options": [
+        { "text": "Südamerika", "isCorrect": true },
+        { "text": "Afrika", "isCorrect": false },
+        { "text": "Asien", "isCorrect": false },
+        { "text": "Nordamerika", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Meerenge trennt Europa von Afrika an ihrer engsten Stelle um nur ca. 14 Kilometer?",
+      "options": [
+        { "text": "Straße von Gibraltar", "isCorrect": true },
+        { "text": "Bosporus", "isCorrect": false },
+        { "text": "Dardanellen", "isCorrect": false },
+        { "text": "Straße von Hormus", "isCorrect": false }
+      ]
+    }
+  ]
+}

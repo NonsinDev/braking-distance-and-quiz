@@ -1,0 +1,114 @@
+{
+  "name": "Webentwicklung, Vue & Moderne Web-Technologien",
+  "description": "Spannende Fragen rund um Frontend, Vue.js, JavaScript, APIs und moderne Software-Entwicklung",
+  "questions": [
+    {
+      "question": "Welche Funktion wird in Vue 3 (Composition API) typischerweise verwendet, um einen primitiven Wert reaktiv zu machen?",
+      "options": [
+        { "text": "ref()", "isCorrect": true },
+        { "text": "makeReactive()", "isCorrect": false },
+        { "text": "observable()", "isCorrect": false },
+        { "text": "watchState()", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser HTTP-Statuscodes signalisieren einen erfolgreichen Server-Aufruf (2xx)?",
+      "options": [
+        { "text": "200 OK", "isCorrect": true },
+        { "text": "201 Created", "isCorrect": true },
+        { "text": "204 No Content", "isCorrect": true },
+        { "text": "304 Not Modified", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Was bewirkt die Direktive 'v-model' in Vue.js primär?",
+      "options": [
+        { "text": "Erstellt ein dreidimensionales Grafikmodell", "isCorrect": false },
+        { "text": "Ermöglicht Two-Way-Data-Binding (Zwei-Wege-Datenbindung) auf Formularelementen", "isCorrect": true },
+        { "text": "Rendert eine Schleife über ein Array", "isCorrect": false },
+        { "text": "Bindet statische Bildressourcen ein", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Technologien werden für Echtzeit-Kommunikation im Web verwendet?",
+      "options": [
+        { "text": "WebSockets", "isCorrect": true },
+        { "text": "Server-Sent Events (SSE)", "isCorrect": true },
+        { "text": "SignalR", "isCorrect": true },
+        { "text": "FTP (File Transfer Protocol)", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Wofür steht die Abkürzung 'CSS' in der Webentwicklung?",
+      "options": [
+        { "text": "Cascading Style Sheets", "isCorrect": true },
+        { "text": "Creative Styling Syntax", "isCorrect": false },
+        { "text": "Computer System Sheets", "isCorrect": false },
+        { "text": "Compiled Style Structure", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche Aussage über den modernen Bundler 'Vite' ist zutreffend?",
+      "options": [
+        { "text": "Er nutzt native ES Modules (ESM) im Dev-Server für extrem schnelles Hot Module Reloading", "isCorrect": true },
+        { "text": "Er funktioniert ausschließlich mit React und nicht mit Vue", "isCorrect": false },
+        { "text": "Er kompiliert Code ausschließlich auf einem externen Cloud-Server", "isCorrect": false },
+        { "text": "Er ersetzt relationale Datenbanken", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser Eigenschaften zeichnen das JSON-Format (JavaScript Object Notation) aus?",
+      "options": [
+        { "text": "Einfach von Menschen und Maschinen lesbar", "isCorrect": true },
+        { "text": "Basiert auf Schlüssel-Wert-Paaren", "isCorrect": true },
+        { "text": "Kann native Binärdateien ohne Base64-Encoding direkt ausführen", "isCorrect": false },
+        { "text": "Textbasiertes, sprachunabhängiges Datenaustauschformat", "isCorrect": true }
+      ]
+    },
+    {
+      "question": "Was unterscheidet 'let' von 'const' in modernem JavaScript?",
+      "options": [
+        { "text": "Mit 'let' deklarierte Variablen können neu zugewiesen werden, mit 'const' nicht", "isCorrect": true },
+        { "text": "'const' ist nur in Funktionen verfügbar, 'let' nur global", "isCorrect": false },
+        { "text": "'let' erfordert immer Typangaben wie int oder string", "isCorrect": false },
+        { "text": "Es gibt keinen Unterschied, es sind reine Synonyme", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welcher Hook in Vue 3 entspricht dem klassischen 'mounted'-Lifecycle-Hook?",
+      "options": [
+        { "text": "onMounted()", "isCorrect": true },
+        { "text": "useMount()", "isCorrect": false },
+        { "text": "afterRender()", "isCorrect": false },
+        { "text": "created()", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche der folgenden Selektoren oder Eigenschaften gehören zu CSS Flexbox?",
+      "options": [
+        { "text": "justify-content", "isCorrect": true },
+        { "text": "align-items", "isCorrect": true },
+        { "text": "flex-direction", "isCorrect": true },
+        { "text": "grid-template-areas", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Was ist der Hauptvorteil von TypeScript gegenüber reinem JavaScript?",
+      "options": [
+        { "text": "Statische Typisierung zur Fehlererkennung bereits zur Entwicklungszeit", "isCorrect": true },
+        { "text": "Läuft ohne Kompilierung direkt in allen alten Browsern", "isCorrect": false },
+        { "text": "Macht Backend-Server komplett überflüssig", "isCorrect": false },
+        { "text": "Verhindert grundsätzlich jegliche CSS-Fehler", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Welche dieser HTTP-Methoden gelten laut Spezifikation typischerweise als idempotent?",
+      "options": [
+        { "text": "GET", "isCorrect": true },
+        { "text": "PUT", "isCorrect": true },
+        { "text": "DELETE", "isCorrect": true },
+        { "text": "POST", "isCorrect": false }
+      ]
+    }
+  ]
+}
